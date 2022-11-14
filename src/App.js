@@ -128,6 +128,7 @@ function Image({index, c = new THREE.Color(), ...props}) {
     const expand_index = scroll_pos === 0 ? 1 : scroll_pos
     // console.log("rrrrrrrrrrrrrrrrr", group.current)    
     if(exp != scroll_pos){
+      zoom_index = 1;
       if(index === scroll_pos){
         rise_action_title = gsap.to(tt1.current, {y: 0, duration: 0.5, delay: 1})
         rise_action_sub = gsap.to(tt2.current, {y: 0, duration: 0.5, delay: 1})
@@ -180,13 +181,14 @@ function Image({index, c = new THREE.Color(), ...props}) {
     ref.current.position.x = THREE.MathUtils.damp(ref.current.position.x, dis - width / 2 + obj_size.imgs_scr_w_sp, 2, delta)
     // ref_s.current.position.x = THREE.MathUtils.damp(ref_s.current.position.x, dis - width / 2 + obj_size.imgs_scr_w_sp, 2, delta)
     ref.current.material.scale[0] = ref.current.scale.x = THREE.MathUtils.damp(ref.current.scale.x, sca, 2, delta)
-    if(index === scroll_pos){
+    if(index === scroll_pos && zoom_index < 1.1){
       // ref.current.material.scale[0] = THREE.MathUtils.damp(ref.current.scale.x, sca * 1.5, 4, delta)
       // ref.current.material.scale[1] = THREE.MathUtils.damp(ref.current.scale.y, sca * 1.5, 4, delta)
-      zoom_index += delta/100;
       console.log("wwwwwwwwwwwwwwwwwwww", zoom_index)
-    ref.current.material.zoom = zoom_index;
-
+    // if(zoom_index < 1.1) {
+      zoom_index += delta/100;
+      ref.current.material.zoom = zoom_index;
+    // }
 
     }
     // ref.current.scale.x = THREE.MathUtils.damp(ref.current.scale.x, sca * 1.2, 2, 3)
@@ -379,4 +381,20 @@ function Backs() {
       </AnimatedText>
       <Image index={1} txt={"Verdi"} txt_title={"residence"} position={[width * 0.35, 0, 0]} scale={[obj_size.img_w , height * 0.9, 0]} url={"/img1.jpg"} />
       {/* <Image position={[width * 0.35 + height * 0.9 * 1.75, 0, 0]} scale={[height * 0.9 * 1.75, height * 0.9, 1]} url={'/img2.jpg'} />  */}
-      <Image index={2} txt={"Laura"} txt_title={"villa"} posi
+      <Image index={2} txt={"Laura"} txt_title={"villa"} position={[width * 0.35 + obj_size.img_w, 0, 0]} scale={[1 , height * 0.9, 0]} url={'/img2.jpg'} /> 
+      {/* <Image position={[width * 0.8, 0, 0]} scale={[height * 0.9 * 1.75, height * 0.9, 1]} url={'/img3.jpg'} /> */}
+      <Image index={3} txt={"Thiago"} txt_title={"render"} position={[width * 0.35 + obj_size.img_w / 2 + 0.75 + 1.25, 0, 0]} scale={[1, height * 0.9, 0]} url={'/img3.jpg'} />
+    </group>
+  )
+}
+
+export default function App() {
+  return (
+    <Canvas gl={{ antialias: false }} dpr={[1, 1]}>
+      <Suspense fallback={null}>
+        <Items/>
+        <Preload />
+      </Suspense>
+    </Canvas>
+  )
+}
