@@ -241,15 +241,15 @@ function Image({index, c = new THREE.Color(), ...props}) {
       {/* </Instance> */}
       <mesh zIndexRange={[-2, -2]} style={{}} ref={refTxt}  position={props.position} >
             <Html ref={refTxtHtml} zIndexRange={[2, 6]} style={{zIndex:-4}} center position={[0,0,0]} wrapperClass="dddddddddd" >
-              <div style={{ zIndex:-1, pointerEvents: 'auto', backgroundColor:'hidden', overflow:"hidden", textAlign:'center', width: 'fit-content', height: "35px", position: 'absolute', transform: 'translateY(-145%)'}}>
+              <div style={{ zIndex:-1, pointerEvents: 'none', backgroundColor:'', overflow:"hidden", textAlign:'center', width: 'fit-content', height: "35px", position: 'absolute', transform: 'translateY(-145%)'}}>
                 <p ref={tt2} style={txt_small_style}>{props.txt_title}</p>
               </div>
               
-              <div style={{ zIndex:-1, pointerEvents: 'auto', backgroundColor:'', overflow:"hidden", textAlign:'center', height: "121px", padding:'0px'}}>
+              <div style={{ zIndex:-1, pointerEvents: 'none', backgroundColor:'', overflow:"hidden", textAlign:'center', height: "121px", padding:'0px'}}>
                 <p ref={tt1} style={txt_title_style}>{props.txt}</p>
               </div>
 
-              <div style={{ zIndex:-1, pointerEvents: 'auto', backgroundColor:'', overflow:"hidden", textAlign:'center', padding:'0px',position:'absolute', display: 'flex',right:'0', height:'155px', transform:'translateY(25%)'}}>
+              <div style={{ zIndex:-1, pointerEvents: 'none', backgroundColor:'', overflow:"hidden", textAlign:'center', padding:'0px',position:'absolute', display: 'flex',right:'0', height:'155px', transform:'translateY(25%)'}}>
                 <div ref={tt3} style={{display: 'flex', width: '177px', height:'52px'}}>
                   <div id='show_btn'>
                     <p>show more</p>
